@@ -1,13 +1,11 @@
-import { MutationTree } from 'vuex'
+import { GetterTree } from 'vuex'
 
 export const state = () => ({
-  counter: 0,
+  version: 0,
 })
 
 export type RootState = ReturnType<typeof state>
 
-export const mutations: MutationTree<RootState> = {
-  increment(state) {
-    state.counter++
-  },
+export const getters: GetterTree<RootState, RootState> = {
+  version: (state) => state.version,
 }

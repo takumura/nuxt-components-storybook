@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="todo in todos" :key="todo.id">
+    <li v-for="todo in getList" :key="todo.id">
       <input :checked="todo.done" @change="toggle(todo)" type="checkbox" />
       <span :class="{ done: todo.done }">{{ todo.name }}</span>
       <button @click="removeTodo(todo)">remove</button>
@@ -12,24 +12,22 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters, mapActions } from 'vuex'
 
 export default {
   computed: {
-    todos() {
-      return this.$store.state.todos.list
-    },
+    ...mapGetters({
+      getList: 'todos/getTodoList',
+    }),
   },
   methods: {
-    addTodo(e) {
-      this.$store.commit('todos/add', e.target.value)
-      e.target.value = ''
-    },
-    ...mapMutations({
+    ...mapActions({
+      removeTodo: 'todos/remove',
       toggle: 'todos/toggle',
     }),
-    removeTodo(todo) {
-      this.$store.commit('todos/remove', todo)
+    addTodo(e) {
+      this.$store.dispatch('todos/add', e.target.value)
+      e.target.value = ''
     },
   },
 }
