@@ -38,7 +38,7 @@ Vue.use(Vuetify, {
 addDecorator(() => ({
   vuetify: new Vuetify(vuetifyOptions),
   components: { VApp, VContent },
-  template: `<v-app><v-content><story/></v-content></v-app>`,
+  template: `<v-app><v-main><story/></v-main></v-app>`,
 }))
 
 export const parameters = {
