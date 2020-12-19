@@ -9,7 +9,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { TaskData },
-  template: '<task-data :task="task" />',
+  template: '<task-data :task="task" :duration="500000" />',
 })
 
 export const TaskDataComponent = Template.bind({})

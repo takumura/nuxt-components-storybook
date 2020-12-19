@@ -16,6 +16,7 @@ const store = new Vuex.Store({
           { name: 'task1', done: false },
           { name: 'task2', done: true },
           { name: 'task3', done: true },
+          { name: 'task4', done: true },
         ],
       },
       getters: {
