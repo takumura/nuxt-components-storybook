@@ -1,11 +1,5 @@
-import TaskList from '../../components/TaskList'
 import Vuex from 'vuex'
-
-export default {
-  title: 'Components/Task',
-  component: TaskList,
-  argTypes: {},
-}
+import TaskList from '../../../components/TaskList'
 
 const store = new Vuex.Store({
   modules: {
@@ -35,4 +29,4 @@ const Template = (args, { argTypes }) => ({
   store,
 })
 
-export const TaskListComponent = Template.bind({})
+export const taskList = Template.bind({})

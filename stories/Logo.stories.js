@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/vue'
 import Logo from '@/components/Logo.vue'
 
-storiesOf('Components/Default', module).add(
+storiesOf('Example/Logo', module).add(
   'Logo',
   () => ({
     components: { Logo },
@@ -15,5 +15,5 @@ storiesOf('Components/Default', module).add(
         # Logo
         Nuxt.js default logo
       `,
-  },
+  }
 )

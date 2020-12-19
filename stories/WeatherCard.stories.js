@@ -1,7 +1,7 @@
 import WeatherCard from '../components/WeatherCard.vue'
 
 export default {
-  title: 'Components/Vuetify',
+  title: 'Example/VuetifyComponent',
   component: WeatherCard,
 }
 
@@ -11,7 +11,7 @@ const Template = (args, { argTypes }) => ({
   template: '<weather-card :day-of-the-week-labels="dayOfTheWeekLabels"/>',
 })
 
-export const WeatherCardComponent = Template.bind({})
-WeatherCardComponent.args = {
+export const weatherCard = Template.bind({})
+weatherCard.args = {
   dayOfTheWeekLabels: ['SU', 'MO', 'TU', 'WED', 'TH', 'FR', 'SA'],
 }
