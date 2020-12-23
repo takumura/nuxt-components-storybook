@@ -3,7 +3,7 @@
     <v-container class="ma-0 pa-0">
       <v-row class="px-2">
         <v-col class="d-flex align-center">
-          {{ task.name }}
+          {{ todo.name }}
         </v-col>
         <v-spacer></v-spacer>
         <v-col>
@@ -17,14 +17,14 @@
   </v-card>
 </template>
 <script lang="ts">
-import { Task } from '../store/tasks'
+import { Todo } from '../store/todos'
 import DurationTime from './DurationTime.vue'
 import StartStopButton from './StartStopButton.vue'
 
 export default {
   props: {
-    task: {
-      type: Object as () => Task,
+    todo: {
+      type: Object as () => Todo,
       required: true,
     },
     duration: {

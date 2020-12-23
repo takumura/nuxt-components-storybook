@@ -1,9 +1,9 @@
 import Vuex from 'vuex'
-import TaskList from '../../../components/TaskList'
+import TodoList from '../../../components/TodoList'
 
 const store = new Vuex.Store({
   modules: {
-    tasks: {
+    todos: {
       namespaced: true,
       state: {
         list: [
@@ -14,7 +14,7 @@ const store = new Vuex.Store({
         ],
       },
       getters: {
-        getTasks: (state) => {
+        getTodoList: (state) => {
           return state.list
         },
       },
@@ -24,9 +24,9 @@ const store = new Vuex.Store({
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TaskList },
-  template: '<task-list />',
+  components: { TodoList },
+  template: '<todo-list />',
   store,
 })
 
-export const taskList = Template.bind({})
+export const todoList = Template.bind({})
