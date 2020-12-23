@@ -7,7 +7,7 @@
         </v-col>
         <v-spacer></v-spacer>
         <v-col>
-          <v-btn small depressed color="primary" class="mx-1">start</v-btn>
+          <start-stop-button></start-stop-button>
         </v-col>
         <v-col>
           <duration-time :duration="duration" />
