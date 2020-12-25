@@ -1,18 +1,17 @@
 <template>
-  <ul>
-    <li v-for="todo in getList" :key="todo.id">
-      <input :checked="todo.done" @change="toggle(todo)" type="checkbox" />
-      <span :class="{ done: todo.done }">{{ todo.name }}</span>
-      <button @click="removeTodo(todo)">remove</button>
-    </li>
-    <li>
-      <input @keyup.enter="addTodo" placeholder="What needs to be done?" />
-    </li>
-  </ul>
+  <div>
+    <v-text-field
+      @keyup.enter="addTodo"
+      label="Todo"
+      hint="What needs to be done?"
+    ></v-text-field>
+    <todo-list></todo-list>
+  </div>
 </template>
 
 <script>
 import { mapMutations, mapGetters, mapActions } from 'vuex'
+import TodoList from '../components/TodoList'
 
 export default {
   computed: {
@@ -29,6 +28,9 @@ export default {
       this.$store.dispatch('todos/add', e.target.value)
       e.target.value = ''
     },
+  },
+  components: {
+    TodoList,
   },
 }
 </script>
