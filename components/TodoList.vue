@@ -10,10 +10,11 @@
   </v-container>
 </template>
 <script lang="ts">
+import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
 import TodoData from './TodoData.vue'
 
-export default {
+export default Vue.extend({
   computed: {
     ...mapGetters({
       getTodoList: 'todos/getTodoList',
@@ -22,6 +23,6 @@ export default {
   components: {
     TodoData: TodoData,
   },
-}
+})
 </script>
 <style></style>

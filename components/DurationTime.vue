@@ -7,7 +7,8 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-export default {
+
+export default Vue.extend({
   props: {
     duration: {
       type: Number,
@@ -35,5 +36,5 @@ export default {
       return timeValue.toString().padStart(2, '0')
     },
   },
-}
+})
 </script>

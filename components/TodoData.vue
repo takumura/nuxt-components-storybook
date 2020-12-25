@@ -17,11 +17,12 @@
   </v-card>
 </template>
 <script lang="ts">
+import Vue from 'vue'
 import { Todo } from '../store/todos'
 import DurationTime from './DurationTime.vue'
 import StartStopButton from './StartStopButton.vue'
 
-export default {
+export default Vue.extend({
   props: {
     todo: {
       type: Object as () => Todo,
@@ -36,6 +37,6 @@ export default {
     DurationTime: DurationTime,
     StartStopButton: StartStopButton,
   },
-}
+})
 </script>
 <style></style>

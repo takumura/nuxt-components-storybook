@@ -4,7 +4,9 @@
   </v-btn>
 </template>
 <script lang="ts">
-export default {
+import Vue from 'vue'
+
+export default Vue.extend({
   data: function () {
     return { running: false, buttonMessage: 'start', color: 'primary' }
   },
@@ -21,6 +23,6 @@ export default {
       }
     },
   },
-}
+})
 </script>
 <style></style>
