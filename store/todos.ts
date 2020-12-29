@@ -1,5 +1,4 @@
-import { MutationTree, ActionTree, GetterTree } from 'vuex'
-import { RootState } from '~/store'
+import { getterTree, mutationTree, actionTree } from 'typed-vuex'
 
 export interface Todo {
   id?: number
@@ -13,31 +12,16 @@ export interface TodoState {
 }
 
 export const state = () => ({
-  list: [],
+  list: [] as Todo[],
 })
 
-export const getters: GetterTree<TodoState, RootState> = {
-  getTodoList: (state: TodoState) => {
-    return state.list
-  },
-}
+export type RootState = ReturnType<typeof state>
 
-export const actions: ActionTree<TodoState, RootState> = {
-  add: ({ commit }, description: string) => {
-    commit('add', description)
-  },
-  remove: ({ commit }, todo: Todo) => {
-    commit('remove', todo)
-  },
-  runTask: ({ commit }, todo: Todo) => {
-    commit('runTask', todo)
-  },
-  toggle: ({ commit }, todo: Todo) => {
-    commit('toggle', todo)
-  },
-}
+export const getters = getterTree(state, {
+  getTodoList: (state: TodoState) => state.list,
+})
 
-export const mutations: MutationTree<TodoState> = {
+export const mutations = mutationTree(state, {
   add(state, description: string) {
     const todo: Todo = { name: description, running: false, done: false }
     state.list.push(todo)
@@ -57,4 +41,22 @@ export const mutations: MutationTree<TodoState> = {
   toggle(state, todo: Todo) {
     todo.done = !todo.done
   },
-}
+})
+
+export const actions = actionTree(
+  { state, getters, mutations },
+  {
+    add({ commit }, description: string) {
+      commit('add', description)
+    },
+    remove({ commit }, todo: Todo) {
+      commit('remove', todo)
+    },
+    runTask({ commit }, todo: Todo) {
+      commit('runTask', todo)
+    },
+    toggle({ commit }, todo: Todo) {
+      commit('toggle', todo)
+    },
+  }
+)

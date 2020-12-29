@@ -32,7 +32,7 @@ export default Vue.extend({
   },
   methods: {
     runTask: function () {
-      this.$store.dispatch('todos/runTask', this.todo)
+      this.$accessor.todos.runTask(this.todo)
     },
   },
 })

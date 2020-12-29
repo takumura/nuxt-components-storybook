@@ -11,14 +11,13 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import { mapMutations, mapGetters, mapActions } from 'vuex'
 import TodoData from './TodoData.vue'
 
 export default Vue.extend({
   computed: {
-    ...mapGetters({
-      getTodoList: 'todos/getTodoList',
-    }),
+    getTodoList() {
+      return this.$accessor.todos.getTodoList
+    },
   },
   components: {
     TodoData: TodoData,

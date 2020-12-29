@@ -1,5 +1,4 @@
-import { GetterTree } from 'vuex'
-import { RootState } from '~/store'
+import { getterTree, mutationTree, actionTree } from 'typed-vuex'
 
 export interface Task {
   name: string
@@ -11,11 +10,11 @@ export interface TaskState {
 }
 
 export const state = () => ({
-  list: [],
+  list: [] as Task[],
 })
 
-export const getters: GetterTree<TaskState, RootState> = {
-  getTasks: (state: TaskState) => {
-    return state.list
-  },
-}
+export type RootState = ReturnType<typeof state>
+
+export const getters = getterTree(state, {
+  getTasks: (state: TaskState) => state.list,
+})
