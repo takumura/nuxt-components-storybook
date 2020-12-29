@@ -1,4 +1,4 @@
-import TodoData from '../../../components/TodoData.vue'
+import TodoData from '~/components/TodoData.vue'
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),

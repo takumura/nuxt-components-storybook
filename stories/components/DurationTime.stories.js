@@ -1,4 +1,4 @@
-import DurationTime from '../../components/DurationTime.vue'
+import DurationTime from '~/components/DurationTime.vue'
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
