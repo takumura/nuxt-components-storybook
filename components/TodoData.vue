@@ -7,7 +7,7 @@
         </v-col>
         <v-spacer></v-spacer>
         <v-col>
-          <start-stop-button></start-stop-button>
+          <start-stop-button :todo="todo"></start-stop-button>
         </v-col>
         <v-col>
           <duration-time :duration="duration" />

@@ -1,26 +1,38 @@
 <template>
-  <v-btn small depressed :color="color" v-on:click="toggle">
+  <v-btn small depressed :color="buttonColor" v-on:click="runTask">
     {{ buttonMessage }}
   </v-btn>
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import { Todo } from '~/store/todos'
 
 export default Vue.extend({
-  data: function () {
-    return { running: false, buttonMessage: 'start', color: 'primary' }
+  props: {
+    todo: {
+      type: Object as () => Todo,
+      required: true,
+    },
+  },
+  computed: {
+    buttonColor() {
+      if (this.todo.running) {
+        return 'warning'
+      } else {
+        return 'primary'
+      }
+    },
+    buttonMessage() {
+      if (this.todo.running) {
+        return 'stop'
+      } else {
+        return 'start'
+      }
+    },
   },
   methods: {
-    toggle: function () {
-      if (this.running) {
-        this.running = !this.running
-        this.buttonMessage = 'start'
-        this.color = 'primary'
-      } else {
-        this.running = !this.running
-        this.buttonMessage = 'stop'
-        this.color = 'warning'
-      }
+    runTask: function () {
+      this.$store.dispatch('todos/runTask', this.todo)
     },
   },
 })
