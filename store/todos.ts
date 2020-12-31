@@ -13,6 +13,12 @@ export interface TodoState {
 
 export const state = () => ({
   list: [] as Todo[],
+  // list: [
+  //   { name: 'task1', done: false, running: false },
+  //   { name: 'task2', done: true, running: false },
+  //   { name: 'task3', done: true, running: false },
+  //   { name: 'task4', done: true, running: false },
+  // ] as Todo[],
 })
 
 export type RootState = ReturnType<typeof state>

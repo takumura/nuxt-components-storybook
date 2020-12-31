@@ -1,13 +1,49 @@
 import { addDecorator } from '@storybook/vue'
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { useAccessor } from 'typed-vuex'
 
 import Vuetify from 'vuetify'
 import { VApp, VContent } from 'vuetify/lib'
 import colors from 'vuetify/es5/util/colors'
 import 'vuetify/dist/vuetify.min.css'
+import * as rootStore from '~/store/index'
+import * as todos from '~/store/todos'
+import * as tasks from '~/store/tasks'
 
+// setup Vuex with Typed Vuex
 Vue.use(Vuex)
+export const storePattern = {
+  state: rootStore.state,
+  getters: rootStore.getters,
+  actions: rootStore.actions,
+  mutations: rootStore.mutations,
+  modules: {
+    todos: {
+      namespaced: true,
+      state: {
+        list: [
+          { name: 'task1', done: false, running: false },
+          { name: 'task2', done: false, running: false },
+          { name: 'task3', done: false, running: true },
+          { name: 'task4', done: false, running: false },
+          { name: 'task5', done: false, running: false },
+        ],
+      },
+      getters: todos.getters,
+      actions: todos.actions,
+      mutations: todos.mutations,
+    },
+    tasks,
+  },
+}
+const store = new Vuex.Store(storePattern)
+export const accessor = useAccessor(store, storePattern)
+Vue.prototype.$accessor = accessor
+
+export default store
+
+// Setup vuetify
 const vuetifyOptions = {}
 
 Vue.use(Vuetify, {
