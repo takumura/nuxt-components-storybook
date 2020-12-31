@@ -9,30 +9,23 @@
   </div>
 </template>
 
-<script>
-import { mapMutations, mapGetters, mapActions } from 'vuex'
-import TodoList from '../components/TodoList'
+<script lang="ts">
+import Vue from 'vue'
+import TodoList from '~/components/TodoList.vue'
 
-export default {
-  computed: {
-    ...mapGetters({
-      getList: 'todos/getTodoList',
-    }),
-  },
+export default Vue.extend({
   methods: {
-    ...mapActions({
-      removeTodo: 'todos/remove',
-      toggle: 'todos/toggle',
-    }),
-    addTodo(e) {
-      this.$store.dispatch('todos/add', e.target.value)
-      e.target.value = ''
+    addTodo(e: Event): void {
+      if (e.target instanceof HTMLInputElement) {
+        this.$accessor.todos.add(e.target.value)
+        e.target.value = ''
+      }
     },
   },
   components: {
     TodoList,
   },
-}
+})
 </script>
 
 <style>
