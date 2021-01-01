@@ -7,7 +7,10 @@
         </v-col>
         <v-spacer></v-spacer>
         <v-col>
-          <start-stop-button :todo="todo"></start-stop-button>
+          <start-stop-button
+            :todo="todo"
+            v-on:startStopButtonClicked="startStopButtonClicked"
+          ></start-stop-button>
         </v-col>
         <v-col>
           <duration-time :duration="duration" />
@@ -28,14 +31,26 @@ export default Vue.extend({
       type: Object as () => Todo,
       required: true,
     },
-    duration: {
-      type: Number,
-      required: false,
-    },
+  },
+  data() {
+    return { duration: 0 }
   },
   components: {
     DurationTime: DurationTime,
     StartStopButton: StartStopButton,
+  },
+  methods: {
+    startStopButtonClicked(): void {
+      const initialTime = window.performance.now()
+      const frame = window.requestAnimationFrame
+      const callback = (currentTime: number, previousTime: number) => {
+        if (this.todo.running) {
+          this.duration = this.duration + (currentTime - previousTime)
+          frame((timestamp) => callback(timestamp, currentTime))
+        }
+      }
+      frame((timestamp) => callback(timestamp, initialTime))
+    },
   },
 })
 </script>

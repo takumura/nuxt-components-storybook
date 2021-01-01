@@ -15,14 +15,14 @@ export default Vue.extend({
     },
   },
   computed: {
-    buttonColor() {
+    buttonColor: function () {
       if (this.todo.running) {
         return 'warning'
       } else {
         return 'primary'
       }
     },
-    buttonMessage() {
+    buttonMessage: function () {
       if (this.todo.running) {
         return 'stop'
       } else {
@@ -33,6 +33,7 @@ export default Vue.extend({
   methods: {
     runTask: function () {
       this.$accessor.todos.runTask(this.todo)
+      this.$emit('startStopButtonClicked')
     },
   },
 })
